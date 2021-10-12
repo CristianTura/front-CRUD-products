@@ -1,0 +1,16 @@
+.logo-login {
+    width: 70px;
+    margin: auto;
+}
+.select-position:active,
+.select-position:focus {
+    border: none;
+    outline: none;
+}
+.select-position {
+    font-size: 16px;
+}
+.market .btn-enter {
+    background-color: #178f69;
+    margin: auto;
+}
