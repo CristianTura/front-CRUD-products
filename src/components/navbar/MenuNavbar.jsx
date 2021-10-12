@@ -33,7 +33,7 @@ const Navbar = () => {
                             SUPERMERCADO MERCATODO
                         </Link>
                     </div>
-                    {location.pathname === "/market" || "market/admi" ? (
+                    {location.pathname !== "/" ? (
                         <div className="w-100 d-flex flex-column flex-sm-row justify-content-center ">
                             <form className="m-auto d-flex align-items-center position-relative mb-2 mb-sm-3 ">
                                 <input
