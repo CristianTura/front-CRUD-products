@@ -1,7 +1,12 @@
-const API_URL = "http://localhost:3002/products/";
+const API_URL = "https://young-tor-11515.herokuapp.com/api/products/";
 
 export const listMarket = async () => {
-    return await fetch(API_URL);
+    return await fetch(API_URL, {
+        mode: "cors",
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+        },
+    });
 };
 
 export const getProduct = async (id) => {
