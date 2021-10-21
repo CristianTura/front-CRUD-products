@@ -50,16 +50,19 @@ const MarketForm = () => {
         try {
             const res = await MarketServer.getProduct(idProduct);
             const data = await res.json();
+            console.log(data.product);
             const {
-                id,
+                pro_id,
+                pro_name,
                 pro_description,
                 pro_category,
                 pro_existences,
                 pro_provider,
                 pro_date,
-            } = data;
+            } = data.product;
             setmarket({
-                id: id,
+                id: pro_id,
+                name: pro_name,
                 description: pro_description,
                 category: pro_category,
                 amount: pro_existences,
@@ -87,10 +90,10 @@ const MarketForm = () => {
                         <div className="form-group mb-1">
                             <input
                                 type="text"
-                                name="description"
+                                name="name"
                                 placeholder="DESCRIPCION"
                                 className="form-control"
-                                value={market.description}
+                                value={market.name}
                                 onChange={handleInputChange}
                                 autoFocus
                                 required

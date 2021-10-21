@@ -19,7 +19,7 @@ const Navbar = () => {
     const onSelectChange = (e) => {
         setSelectValue(e.target.options[e.target.selectedIndex].text);
     };
-    console.log(location.pathname);
+    // console.log(location.pathname);
     return (
         <div className="navContainer position-relative">
             <nav className="navbar navbar-dark">
@@ -56,14 +56,14 @@ const Navbar = () => {
                             >
                                 <option value="0">Categorías</option>
                                 <option value="1">Cárnicos</option>
-                                <option value="2">Lácteos y derivados</option>
+                                <option value="2">Lacteos</option>
                                 <option value="3">Embutidos</option>
-                                <option value="4">Licores y bebidas</option>
+                                <option value="4">Bebidas y licores</option>
                                 <option value="5">Granos</option>
                                 <option value="6">Enlatados</option>
-                                <option value="7">Frutas y verduras</option>
+                                <option value="7">Vegetales y Frutas</option>
                                 <option value="8">Dulcería</option>
-                                <option value="9">Elementos de aseo</option>
+                                <option value="9">Elementos de Aseo</option>
                                 <option value="10">Desinfectantes</option>
                                 <option value="11">Aseo personal</option>
                             </select>

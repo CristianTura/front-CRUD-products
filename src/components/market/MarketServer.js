@@ -1,16 +1,19 @@
 const API_URL = "https://young-tor-11515.herokuapp.com/api/products/";
 
 export const listMarket = async () => {
-    return await fetch(API_URL, {
-        mode: "cors",
-        headers: {
-            "Access-Control-Allow-Origin": "*",
-        },
-    });
+    return await fetch(
+        API_URL
+        //     , {
+        //     mode: "cors",
+        //     headers: {
+        //         "Access-Control-Allow-Origin": "*",
+        //     },
+        // }
+    );
 };
 
 export const getProduct = async (id) => {
-    return await fetch(`${API_URL}/${id}`);
+    return await fetch(`${API_URL}${id}`);
 };
 
 export const registerProduct = async (newProduct) => {
@@ -20,8 +23,8 @@ export const registerProduct = async (newProduct) => {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            id: parseInt(newProduct.id),
-            pro_id: parseInt(newProduct.id),
+            // id: parseInt(newProduct.pro_id),
+            // pro_id: parseInt(newProduct.pro_id),
             pro_name: String(newProduct.description).trim(),
             pro_description: String(newProduct.description).trim(),
             pro_category: String(newProduct.category).trim(),
@@ -33,15 +36,15 @@ export const registerProduct = async (newProduct) => {
 };
 
 export const updateProduct = async (id, updateMarket) => {
-    return await fetch(`${API_URL}/${id}`, {
+    return await fetch(`${API_URL}${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            id: parseInt(updateMarket.id),
+            // id: parseInt(updateMarket.id),
             pro_id: parseInt(id),
-            pro_name: String(updateMarket.description).trim(),
+            pro_name: String(updateMarket.name).trim(),
             pro_description: String(updateMarket.description).trim(),
             pro_category: String(updateMarket.category).trim(),
             pro_existences: parseInt(updateMarket.amount),

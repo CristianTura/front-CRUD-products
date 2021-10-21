@@ -14,7 +14,8 @@ const ListMarket = () => {
         try {
             const res = await MarketServer.listMarket();
             const data = await res.json();
-            setProducts(data);
+            // console.log(data.products);
+            setProducts(data.products);
             // return data;
         } catch (error) {
             console.log(error);
@@ -63,9 +64,9 @@ const ListMarket = () => {
                 <tbody>
                     {filteredChallenges().map((product) => (
                         <MarketItem
-                            key={product.id}
-                            id={product.id}
-                            description={product.pro_description}
+                            key={product.pro_id}
+                            id={product.pro_id}
+                            description={product.pro_name}
                             category={product.pro_category}
                             amount={product.pro_existences}
                             provider={product.pro_provider}
