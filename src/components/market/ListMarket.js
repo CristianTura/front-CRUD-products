@@ -7,8 +7,7 @@ import MarketItem from "./MarketItem";
 import * as MarketServer from "./MarketServer";
 
 const ListMarket = () => {
-    const { data, setData, selectValue, setSelectValue } =
-        useContext(DataContext);
+    const { data, selectValue } = useContext(DataContext);
     const [products, setProducts] = useState([]);
 
     //obteniendo productos del API
