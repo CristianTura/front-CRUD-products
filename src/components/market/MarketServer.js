@@ -1,15 +1,7 @@
-const API_URL = "https://young-tor-11515.herokuapp.com/api/products/";
+const API_URL = "https://safe-river-82717.herokuapp.com/product/";
 
 export const listMarket = async () => {
-    return await fetch(
-        API_URL
-        //     , {
-        //     mode: "cors",
-        //     headers: {
-        //         "Access-Control-Allow-Origin": "*",
-        //     },
-        // }
-    );
+    return await fetch(API_URL);
 };
 
 export const getProduct = async (id) => {
@@ -25,12 +17,12 @@ export const registerProduct = async (newProduct) => {
         body: JSON.stringify({
             // id: parseInt(newProduct.pro_id),
             // pro_id: parseInt(newProduct.pro_id),
-            pro_name: String(newProduct.description).trim(),
-            pro_description: String(newProduct.description).trim(),
-            pro_category: String(newProduct.category).trim(),
-            pro_existences: parseInt(newProduct.amount),
-            pro_provider: String(newProduct.provider).trim(),
-            pro_date: String(newProduct.date).trim(),
+            prod_name: String(newProduct.name).trim(),
+            prod_description: String(newProduct.description).trim(),
+            prod_category: String(newProduct.category).trim(),
+            prod_existences: parseInt(newProduct.amount),
+            prod_provider: String(newProduct.provider).trim(),
+            prod_date: String(newProduct.date).trim(),
         }),
     });
 };
@@ -42,14 +34,14 @@ export const updateProduct = async (id, updateMarket) => {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            // id: parseInt(updateMarket.id),
-            pro_id: parseInt(id),
-            pro_name: String(updateMarket.name).trim(),
-            pro_description: String(updateMarket.description).trim(),
-            pro_category: String(updateMarket.category).trim(),
-            pro_existences: parseInt(updateMarket.amount),
-            pro_provider: String(updateMarket.provider).trim(),
-            pro_date: String(updateMarket.date).trim(),
+            prod_id: parseInt(updateMarket.id),
+            // prod_id: parseInt(id),
+            prod_name: String(updateMarket.name).trim(),
+            prod_description: String(updateMarket.description).trim(),
+            prod_category: String(updateMarket.category).trim(),
+            prod_existences: parseInt(updateMarket.amount),
+            prod_provider: String(updateMarket.provider).trim(),
+            prod_date: String(updateMarket.date).trim(),
         }),
     });
 };

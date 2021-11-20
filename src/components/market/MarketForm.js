@@ -12,7 +12,8 @@ const MarketForm = () => {
     // console.log(params);
 
     const initialState = {
-        // id: 3,
+        id: null,
+        name: "",
         description: "",
         category: "",
         amount: "",
@@ -33,10 +34,11 @@ const MarketForm = () => {
             if (!params.id) {
                 res = await MarketServer.registerProduct(market);
                 const data = await res.json();
-                if (data.message === "Success") {
+                if (data.message === "Exito") {
                     setmarket(initialState);
                 }
             } else {
+                // console.log(market);
                 await MarketServer.updateProduct(params.id, market);
             }
 
@@ -50,24 +52,24 @@ const MarketForm = () => {
         try {
             const res = await MarketServer.getProduct(idProduct);
             const data = await res.json();
-            console.log(data.product);
+            // console.log(data.producto);
             const {
-                pro_id,
-                pro_name,
-                pro_description,
-                pro_category,
-                pro_existences,
-                pro_provider,
-                pro_date,
-            } = data.product;
+                prod_id,
+                prod_name,
+                prod_description,
+                prod_category,
+                prod_existences,
+                prod_provider,
+                prod_date,
+            } = data.producto;
             setmarket({
-                id: pro_id,
-                name: pro_name,
-                description: pro_description,
-                category: pro_category,
-                amount: pro_existences,
-                provider: pro_provider,
-                date: pro_date,
+                id: prod_id,
+                name: prod_name,
+                description: prod_description,
+                category: prod_category,
+                amount: prod_existences,
+                provider: prod_provider,
+                date: prod_date,
             });
         } catch (error) {
             console.log(error);

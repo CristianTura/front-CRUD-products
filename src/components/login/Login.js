@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import logo from "../../assets/img/logoMtodo.png";
 import "./login.css";
@@ -6,44 +6,61 @@ import "./login.css";
 const Login = () => {
     const history = useHistory();
 
-    // const API_LOGIN = "http://localhost:3001/users";
+    const API_LOGIN = "https://safe-river-82717.herokuapp.com/user/";
 
-    // const [users, setuser] = useState();
+    const [users, setuser] = useState();
 
-    // const startSesion = async () => {
-    //     const response = await fetch(API_LOGIN);
-    //     const data = await response.json();
-    //     setuser(data);
-    // };
+    const startSesion = async () => {
+        const response = await fetch(API_LOGIN);
+        const data = await response.json();
+        setuser(data.Usuarios);
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // const filterdata = users.filter((user) => user.email === login.email);
-        // try {
-        //     if (
-        //         filterdata[0].email === login.email &&
-        //         filterdata[0].password === login.password &&
-        //         filterdata[0].cargo === login.cargo
-        //     ) {
-        //         if (login.cargo === "Administrador") {
-        history.push(`/market/admi`);
-        //         } else {
-        // history.push("/market");
-        //         }
-        //     }
-        // } catch (error) {
-        //     console.log(error);
-        //     alert("Datos incorrectos");
-        // }
+        if (login.name === "" || login.name === "Select") {
+            alert("Selecciona un cargo");
+            return;
+        }
+
+        const filterdata = users.filter(
+            (user) => user.username === login.usuario
+        );
+
+        try {
+            if (
+                filterdata[0].username === login.usuario &&
+                filterdata[0].password === login.password &&
+                filterdata[0].name === login.name
+            ) {
+                if (login.name === "admin") {
+                    history.push(`/market/admi`);
+                } else {
+                    history.push("/market");
+                }
+            } else {
+                alert("Datos incorrectos");
+                return;
+            }
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const initialState = {
-        email: "",
+        usuario: "",
         password: "",
-        cargo: "",
+        name: "",
     };
     const [login, setLogin] = useState(initialState);
+    useEffect(() => {
+        if (login.name === "Administrador") {
+            setLogin({ ...login, name: "admin" });
+        } else if (login.name === "Empleado") {
+            setLogin({ ...login, name: "general" });
+        }
+    }, [login]);
 
     const handleInputChange = (e) => {
         setLogin({ ...login, [e.target.name]: e.target.value });
@@ -55,9 +72,9 @@ const Login = () => {
         });
     };
 
-    // useEffect(() => {
-    //     startSesion();
-    // }, []);
+    useEffect(() => {
+        startSesion();
+    }, []);
 
     return (
         <div className="">
@@ -74,14 +91,14 @@ const Login = () => {
                                     className="text-white mb-2 float-start"
                                     htmlFor="category"
                                 >
-                                    Email:
+                                    Usuario:
                                 </label>
                                 <input
-                                    type="email"
-                                    name="email"
-                                    placeholder=""
+                                    type="text"
+                                    name="usuario"
+                                    placeholder="admin"
                                     className="input-position form-control mb-2 rounded-pill float-start"
-                                    value={login.email}
+                                    value={login.usuario}
                                     onChange={handleInputChange}
                                 />
                             </div>
@@ -95,7 +112,7 @@ const Login = () => {
                                 <input
                                     type="password"
                                     name="password"
-                                    placeholder=""
+                                    placeholder="programate"
                                     className="form-control mb-2 rounded-pill "
                                     value={login.password}
                                     onChange={handleInputChange}
@@ -109,10 +126,11 @@ const Login = () => {
                                     Cargo:
                                 </label>
                                 <select
-                                    name="cargo"
+                                    name="name"
                                     id="cargo"
                                     className="select-position mb-2 w-100 py-2 px-3 rounded-pill"
                                     onChange={handleSelectChange}
+                                    required
                                     // defaultValue="0"
                                     // value={login.cargo}
                                 >
@@ -129,6 +147,17 @@ const Login = () => {
                     </div>
                 </div>
             </div>
+            <p className="readme">
+                Ver{" "}
+                <a
+                    href="https://github.com/CristianTura/front-CRUD-products"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    README
+                </a>{" "}
+                para datos del login
+            </p>
         </div>
     );
 };

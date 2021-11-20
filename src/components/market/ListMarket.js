@@ -7,6 +7,8 @@ import MarketItem from "./MarketItem";
 import * as MarketServer from "./MarketServer";
 
 const ListMarket = () => {
+    const { data, setData, selectValue, setSelectValue } =
+        useContext(DataContext);
     const [products, setProducts] = useState([]);
 
     //obteniendo productos del API
@@ -14,27 +16,24 @@ const ListMarket = () => {
         try {
             const res = await MarketServer.listMarket();
             const data = await res.json();
-            // console.log(data.products);
-            setProducts(data.products);
-            // return data;
+            console.log(data.productos);
+            setProducts(data.productos);
         } catch (error) {
             console.log(error);
         }
     };
-
-    const { data, selectValue } = useContext(DataContext);
 
     //filtrando productos
     const filteredChallenges = () => {
         // Si hay algo en el buscador
         if (data.length !== 0) {
             const filtered = products.filter((product) =>
-                product.pro_description.toLowerCase().includes(data)
+                product.prod_description.toLowerCase().includes(data)
             );
             return filtered;
         } else if (selectValue !== "Categorías") {
             const filterSelect = products.filter((product) =>
-                product.pro_category.includes(selectValue)
+                product.prod_category.includes(selectValue)
             );
             return filterSelect;
         } else {
@@ -64,13 +63,13 @@ const ListMarket = () => {
                 <tbody>
                     {filteredChallenges().map((product) => (
                         <MarketItem
-                            key={product.pro_id}
-                            id={product.pro_id}
-                            description={product.pro_name}
-                            category={product.pro_category}
-                            amount={product.pro_existences}
-                            provider={product.pro_provider}
-                            date={product.pro_date}
+                            key={product.prod_id}
+                            id={product.prod_id}
+                            description={product.prod_name}
+                            category={product.prod_category}
+                            amount={product.prod_existences}
+                            provider={product.prod_provider}
+                            date={product.prod_date}
                             listProducts={listProducts}
                         />
                     ))}
