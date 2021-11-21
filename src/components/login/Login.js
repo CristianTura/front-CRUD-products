@@ -44,6 +44,7 @@ const Login = () => {
                 return;
             }
         } catch (error) {
+            alert("Datos incorrectos");
             console.log(error);
         }
     };

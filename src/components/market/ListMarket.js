@@ -15,7 +15,7 @@ const ListMarket = () => {
         try {
             const res = await MarketServer.listMarket();
             const data = await res.json();
-            console.log(data.productos);
+
             setProducts(data.productos);
         } catch (error) {
             console.log(error);
